@@ -467,7 +467,8 @@ small.help{
   margin:20px auto;
   display:flex;
   gap:20px;
-  align-items:stretch;
+  align-items:flex-start;
+  border:2px solid red;
 }
 
 .odev-content,
