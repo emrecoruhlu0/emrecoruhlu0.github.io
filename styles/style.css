@@ -376,3 +376,87 @@ small.help{color:var(--muted)}
     border-radius: 10px;
     border: 1px solid #d0d0d0;
 }
+/* css-odev.html için stiller */
+
+.odev-header,
+.odev-footer{
+    background-color: #dddddd;
+    text-align: center;
+    padding: 20px;
+    margin: 15px auto;
+    width: 80%;
+}
+
+.odev-nav ul{
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
+    background-color: #333333;
+}
+
+.odev-nav li{
+    display: inline-block;
+}
+
+.odev-nav a{
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: 12px 18px;
+}
+
+.odev-nav a:hover{
+    background-color: #555555;
+}
+
+.odev-main{
+    width: 80%;
+    margin: 20px auto;
+}
+
+.odev-content{
+    display: inline-block;
+    width: 64%;
+    vertical-align: top;
+    background-color: #fff3cd;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.odev-sidebar{
+    display: inline-block;
+    width: 34%;
+    vertical-align: top;
+    background-color: #d1ecf1;
+    padding: 15px;
+    box-sizing: border-box;
+    margin-left: 2%;
+}
+
+/* hiyerarşik seçiciler */
+.odev-nav a{
+    font-size: 16px;
+}
+
+.odev-content p{
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.odev-sidebar p{
+    font-size: 15px;
+    color: #444444;
+    line-height: 1.6;
+    text-align: left;
+}
+
+/* grup seçici */
+.odev-header h1,
+.odev-content h2,
+.odev-sidebar h2{
+    color: #222222;
+}
