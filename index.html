@@ -1,145 +1,65 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emre | Portfolyo</title>
-  <link rel="stylesheet" href="styles/style.css" />
+<meta charset="UTF-8">
+<title>CSS Ödev Sayfası</title>
+<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-<div id="progressBar"></div>
-
 <header>
-  <div class="container nav">
-    <a class="brand" href="index.html">
-      <span class="dot"></span>
-      <span>Emre Çoruhlu</span>
-    </a>
-
-    <div class="navlinks">
-      <a href="index.html">Ana Sayfa</a>
-      <a href="about.html">Hakkımda</a>
-      <a href="interests.html">İlgi Alanlarım</a>
-      <a href="contact.html">İletişim</a>
-      <button class="btn icon" id="themeBtn" type="button" title="Tema değiştir">🌓</button>
-    </div>
-  </div>
+<h1>CSS Temel Ödevi</h1>
+<p>Bu sayfa HTML ve CSS kullanılarak hazırlanmıştır.</p>
 </header>
 
-<section class="hero container">
-  <div class="card heroInner reveal">
-    <div>
-      <span class="pill">🚀 GitHub Pages • Statik Site</span>
-      <h1>
-        Merhaba, ben Emre.
-        <br />
-        <span class="muted">Benim odak noktam:</span>
-        <span id="typing" data-text="Web • Gömülü Sistemler • Yapay Zeka"></span>
-      </h1>
-      <p class="muted">
-        Bu mini portfolyo; modern tasarım, küçük ama “wow” etkisi yaratan etkileşimler ve
-        temiz dosya yapısı (CSS/JS ayrı) ile hazırlandı.
-      </p>
+<nav>
+<ul>
+<li><a href="#">Ana Sayfa</a></li>
+<li><a href="#">Hakkımda</a></li>
+<li><a href="#">Projeler</a></li>
+<li><a href="#">İletişim</a></li>
+</ul>
+</nav>
 
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-        <a class="btn primary" href="#projeler">Projeleri gör</a>
-        <a class="btn" href="contact.html">İletişime geç</a>
-        <span class="badge">⚡ Dark mode</span>
-        <span class="badge">✨ Scroll animasyon</span>
-      </div>
-    </div>
+<main>
 
-    <div class="kpis">
-      <div class="kpi">
-        <strong>Hızlı</strong><br/>
-        <span>Statik site: açılış süresi iyi</span>
-      </div>
-      <div class="kpi">
-        <strong>Temiz yapı</strong><br/>
-        <span>styles/ + scripts/ ayrımı</span>
-      </div>
-      <div class="kpi">
-        <strong>Yenilik</strong><br/>
-        <span>Typing + reveal + filtre</span>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="content">
 
-<section class="section container" id="projeler">
-  <div class="sectionHeader">
-    <h2>Projeler</h2>
-    <div class="tools">
-      <input id="projectFilter" type="text" placeholder="Proje ara (ör. web, iot, ai)..." />
-    </div>
-  </div>
+<h2>İçerik</h2>
 
-  <div class="grid projects">
-    <article class="card projectCard reveal" data-project="web react node postgresql postgis">
-      <span class="pill">🗺️ Full-Stack</span>
-      <h3>GIS Tabanlı Web Uygulaması</h3>
-      <p>Harita görselleştirme, kiralama modülleri ve modern frontend mimarisi.</p>
-      <div class="tags">
-        <span class="badge">React</span><span class="badge">Node</span><span class="badge">PostgreSQL</span>
-      </div>
-    </article>
+<p>
+Bu alanda örnek içerik metinleri bulunmaktadır. CSS özellikleriyle
+metinler arasında boşluklar ve hizalamalar düzenlenebilir.
+</p>
 
-    <article class="card projectCard reveal" data-project="iot esp32 raspberry pi flask">
-      <span class="pill">📡 IoT</span>
-      <h3>ESP32 + Sunucu Veri Akışı</h3>
-      <p>Sensör verisini sunucuya gönderme, panelde gösterme, yenileme.</p>
-      <div class="tags">
-        <span class="badge">ESP32</span><span class="badge">Flask</span><span class="badge">MariaDB</span>
-      </div>
-    </article>
+<p>
+Bu paragraf ikinci örnek metindir. Burada font-size, color ve
+line-height gibi CSS özellikleri uygulanabilir.
+</p>
 
-    <article class="card projectCard reveal" data-project="ai cv tensorflow pytorch">
-      <span class="pill">🧠 AI</span>
-      <h3>Görüntü İşleme Pipeline</h3>
-      <p>Çok aşamalı sınıflandırma + maske tespiti yaklaşımı.</p>
-      <div class="tags">
-        <span class="badge">CV</span><span class="badge">PyTorch</span><span class="badge">Metrics</span>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section class="section container">
-  <div class="sectionHeader">
-    <h2>Yetenekler</h2>
-    <div class="tools">
-      <span class="pill">🧩 Görünür olunca barlar dolar</span>
-    </div>
-  </div>
-
-  <div class="grid">
-    <div class="card reveal" style="padding:16px;">
-      <div class="skillRow">
-        <div class="skill">
-          <div class="skillTop"><strong>HTML/CSS</strong><span class="muted">85%</span></div>
-          <div class="bar" data-bar="85"><div></div></div>
-        </div>
-        <div class="skill">
-          <div class="skillTop"><strong>JavaScript</strong><span class="muted">75%</span></div>
-          <div class="bar" data-bar="75"><div></div></div>
-        </div>
-        <div class="skill">
-          <div class="skillTop"><strong>Python</strong><span class="muted">80%</span></div>
-          <div class="bar" data-bar="80"><div></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="footer container">
-  <div class="muted">© 2026 Emre Çoruhlu • GitHub Pages üzerinde yayınlanır</div>
 </div>
 
-<button id="toTop" type="button" title="Yukarı">⬆️</button>
-<div id="toast"></div>
+<aside class="sidebar">
 
-<script src="scripts/app.js"></script>
+<h2>Yan Menü / Bilgi</h2>
+
+<p>
+Bu alan yan menü veya bilgi kısmıdır.
+</p>
+
+<p>
+CSS ile genişlik, yükseklik ve kenarlık özellikleri kullanılarak
+düzenlenebilir.
+</p>
+
+</aside>
+
+</main>
+
+<footer>
+<p>© 2026 Emre Çoruhlu - Web Programlama</p>
+</footer>
+
 </body>
 </html>
