@@ -277,3 +277,102 @@ input::placeholder, textarea::placeholder{color: rgba(168,179,214,.75)}
 .formGrid{display:grid; gap:12px}
 .formActions{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
 small.help{color:var(--muted)}
+/* css-odev.html için ek stiller */
+
+.simple-header{
+    background-color: #e6e6e6;
+    padding: 25px 0;
+    text-align: center;
+    margin-top: 20px;
+    border: 1px solid #d0d0d0;
+    border-radius: 10px;
+}
+
+.simple-header h1,
+.simple-header p{
+    margin: 10px 0;
+}
+
+.simple-nav{
+    margin-top: 15px;
+}
+
+.simple-nav ul{
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    background-color: #3b4a6b;
+    border-radius: 8px;
+}
+
+.simple-nav li{
+    display: inline-block;
+}
+
+.simple-nav a{
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: 12px 18px;
+}
+
+.simple-nav a:hover{
+    background-color: #5a6f99;
+}
+
+.simple-main{
+    margin-top: 20px;
+    font-size: 0;
+}
+
+.simple-content,
+.simple-sidebar{
+    display: inline-block;
+    vertical-align: top;
+    font-size: 16px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #d8d8d8;
+    box-sizing: border-box;
+    min-height: 250px;
+}
+
+.simple-content{
+    width: 65%;
+    background-color: #fff4cc;
+    margin-right: 5%;
+}
+
+.simple-sidebar{
+    width: 30%;
+    background-color: #dff3f8;
+}
+
+.simple-content p{
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.simple-sidebar p{
+    font-size: 15px;
+    color: #444444;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.simple-content h2,
+.simple-sidebar h2,
+.simple-footer p{
+    margin-top: 0;
+}
+
+.simple-footer{
+    margin-top: 20px;
+    text-align: center;
+    background-color: #e6e6e6;
+    padding: 15px 0;
+    border-radius: 10px;
+    border: 1px solid #d0d0d0;
+}
