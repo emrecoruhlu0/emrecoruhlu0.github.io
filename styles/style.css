@@ -417,6 +417,76 @@ small.help{
   color:var(--muted);
 }
 
+/* ===== Lab 3: İletişim Formu (Box Model) ===== */
+
+.contact-container {
+  width: 50%;
+  margin: 30px auto;
+  padding: 30px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+}
+
+.contact-container h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.contact-container label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.contact-container input,
+.contact-container select,
+.contact-container textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.contact-container input:focus,
+.contact-container select:focus,
+.contact-container textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(124,92,255,.2);
+}
+
+.contact-container textarea {
+  resize: vertical;
+}
+
+.contact-submit {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter .2s ease, transform .15s ease;
+}
+
+.contact-submit:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
 /* css-odev.html için temiz final stiller */
 
 .odev-nav{
