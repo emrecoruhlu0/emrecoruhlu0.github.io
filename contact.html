@@ -25,18 +25,50 @@
 
 <section class="section container">
   <div class="grid" style="grid-template-columns: 1.1fr .9fr;">
-    <div class="card reveal" style="padding:18px;">
-      <h2 style="margin-top:0;">Mesaj bırak</h2>
-      <p class="muted">GitHub Pages backend çalıştırmaz; ama bu form seni mail uygulamasına yönlendirir.</p>
 
-      <form id="contactForm" class="formGrid">
-        <input id="c_name" type="text" placeholder="Adın" required />
-        <input id="c_subject" type="text" placeholder="Konu" required />
-        <textarea id="c_msg" rows="6" placeholder="Mesajın" required></textarea>
+    <!-- Lab 3: İletişim Formu -->
+    <div class="contact-container">
+      <h2>Detaylı İletişim Formu</h2>
+      <form>
+        <label for="adSoyad">Ad Soyad:</label>
+        <input type="text" id="adSoyad" name="adSoyad" placeholder="Örn: Asaf Karataş" />
 
-        <div class="formActions">
-          <button class="btn primary" type="submit">📩 Mail ile gönder</button>
-          <small class="help">scripts/app.js içindeki mail adresini değiştir.</small>
+        <label for="eposta">E-posta Adresi:</label>
+        <input type="email" id="eposta" name="eposta" placeholder="ornek@mail.com" />
+
+        <label for="sifre">Başvuru Takip Şifresi:</label>
+        <input type="password" id="sifre" name="sifre" placeholder="Şifrenizi girin" />
+
+        <label>İletişim Tercihi:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="iletisim" value="eposta" /> Bana e-posta ile ulaşın</label>
+          <label><input type="radio" name="iletisim" value="telefon" /> Bana telefonla ulaşın</label>
+        </div>
+
+        <label>İlgi Alanları / Yetenekler:</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="ilgi" value="html" /> HTML</label>
+          <label><input type="checkbox" name="ilgi" value="css" /> CSS</label>
+          <label><input type="checkbox" name="ilgi" value="algoritma" /> Algoritma</label>
+        </div>
+
+        <label for="konu">Konu:</label>
+        <select id="konu" name="konu">
+          <option value="" disabled selected>Lütfen bir konu seçin...</option>
+          <option value="is-teklifi">İş Teklifi</option>
+          <option value="soru">Soru</option>
+          <option value="geri-bildirim">Geri Bildirim</option>
+        </select>
+
+        <label for="dosya">Özgeçmiş (CV) veya Fotoğraf Yükle:</label>
+        <input type="file" id="dosya" name="dosya" />
+
+        <label for="mesaj">Mesajınız:</label>
+        <textarea id="mesaj" name="mesaj" rows="5" placeholder="Detaylı mesajınızı buraya yazabilirsiniz..."></textarea>
+
+        <div class="form-buttons">
+          <button type="submit">Gönder</button>
+          <button type="reset">Temizle</button>
         </div>
       </form>
     </div>
@@ -56,6 +88,7 @@
         <p class="muted"><strong>İş birliği?</strong><br/>Evet, proje bazlı konuşulur.</p>
       </div>
     </div>
+
   </div>
 </section>
 
