@@ -70,6 +70,8 @@ a{
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   backdrop-filter: blur(10px);
+  padding: 18px;
+  margin: 8px 0;
 }
 
 .pill{
@@ -207,7 +209,7 @@ header{
   flex-direction:row;
   justify-content:space-between;
   align-items:stretch;
-  gap:18px;
+  gap:24px;
 }
 
 .hero-text{
