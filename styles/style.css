@@ -86,9 +86,9 @@ a{
 
 .pill{
   display:inline-flex;
-  gap:8px;
+  gap:var(--space-xs);
   align-items:center;
-  padding:8px 12px;
+  padding:var(--space-xs) var(--space-sm);
   border:1px solid var(--line);
   border-radius:999px;
   color:var(--muted);
@@ -97,7 +97,7 @@ a{
 
 .badge{
   display:inline-block;
-  padding:6px 10px;
+  padding:var(--space-xs) var(--space-sm);
   border-radius:999px;
   border:1px solid var(--line);
   color:var(--muted);
@@ -141,7 +141,7 @@ header{
 .brand{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:var(--space-sm);
   font-weight:800;
   letter-spacing:.2px;
 }
@@ -178,8 +178,8 @@ header{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
-  padding:10px 14px;
+  gap:var(--space-sm);
+  padding:var(--space-sm) var(--space-md);
   border-radius:14px;
   border:1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.06);
@@ -205,7 +205,7 @@ header{
 }
 
 .btn.icon{
-  padding:10px 12px;
+  padding:var(--space-sm);
 }
 
 /* ===== 2) Hero - flex row, space-between, stretch ===== */
@@ -239,7 +239,7 @@ header{
 }
 
 h1{
-  margin:10px 0 10px;
+  margin:var(--space-xs) 0;
   font-size: clamp(30px, 4vw, 46px);
   line-height:1.05;
 }
@@ -275,16 +275,16 @@ h1{
 }
 
 .section{
-  padding:18px 0 26px;
-  margin-bottom: 24px;
+  padding:var(--space-md) 0 var(--space-lg);
+  margin-bottom: var(--space-lg);
 }
 
 .sectionHeader{
   display:flex;
   align-items:flex-end;
   justify-content:space-between;
-  gap:14px;
-  margin:18px 0 12px;
+  gap:var(--space-md);
+  margin:var(--space-md) 0 var(--space-sm);
 }
 
 .sectionHeader h2{
@@ -294,7 +294,7 @@ h1{
 
 .sectionHeader .tools{
   display:flex;
-  gap:10px;
+  gap:var(--space-sm);
   flex-wrap:wrap;
 }
 
@@ -302,31 +302,31 @@ h1{
 .projects{
   display:flex;
   flex-wrap:wrap;
-  gap:18px;
-  margin-bottom:18px;
+  gap:var(--space-md);
+  margin-bottom:var(--space-md);
 }
 
 .projectCard{
-  flex:1 1 calc(33.333% - 16px);
+  flex:1 1 calc(33.333% - var(--space-md));
   min-width:250px;
-  padding:16px;
+  padding:var(--space-md);
   display:flex;
   flex-direction:column;
 }
 
 .projectCard h3{
-  margin:6px 0 8px;
+  margin:var(--space-xs) 0;
 }
 
 .projectCard p{
-  margin:0 0 12px;
+  margin:0 0 var(--space-sm);
   color:var(--muted);
   line-height:1.5;
 }
 
 .projectCard .tags{
   display:flex;
-  gap:8px;
+  gap:var(--space-xs);
   flex-wrap:wrap;
   margin-bottom:auto;
 }
@@ -334,7 +334,7 @@ h1{
 /* ===== 4) Flex Grow - 20vh | flex-grow: 1-2-1, align-items: stretch ===== */
 .skillRow{
   display:flex;
-  gap:10px;
+  gap:var(--space-sm);
   align-items:stretch;
 }
 
@@ -347,7 +347,7 @@ h1{
 }
 
 .skill{
-  padding:14px 16px;
+  padding:var(--space-sm) var(--space-md);
   border:1px solid var(--line);
   border-radius: var(--radius);
   background: rgba(255,255,255,.03);
@@ -359,11 +359,11 @@ h1{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
+  gap:var(--space-sm);
 }
 
 .bar{
-  margin-top:10px;
+  margin-top:var(--space-sm);
   height:10px;
   border-radius:999px;
   background: rgba(255,255,255,.08);
@@ -385,16 +385,16 @@ h1{
 
 /* Bölüm yükseklikleri (auto) */
 .section-kartlar{
-  padding:10px 0;
+  padding:var(--space-sm) 0;
 }
 
 .section-grow{
-  padding:8px 0;
+  padding:var(--space-xs) 0;
 }
 
 /* ===== 5) Footer | justify-content: center, align-items: center ===== */
 .footer{
-  padding:20px 0;
+  padding:var(--space-lg) 0;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -415,11 +415,11 @@ h1{
 #toast{
   position: fixed;
   left: 50%;
-  bottom: 18px;
-  transform: translateX(-50%) translateY(20px);
+  bottom: var(--space-md);
+  transform: translateX(-50%) translateY(var(--space-md));
   opacity:0;
   pointer-events:none;
-  padding:10px 12px;
+  padding:var(--space-xs) var(--space-sm);
   border-radius: 14px;
   border:1px solid var(--line);
   background: rgba(15,23,42,.75);
@@ -440,8 +440,8 @@ h1{
 
 #toTop{
   position: fixed;
-  right: 16px;
-  bottom: 16px;
+  right: var(--space-md);
+  bottom: var(--space-md);
   width: 46px;
   height: 46px;
   border-radius: 16px;
@@ -454,7 +454,7 @@ h1{
   cursor:pointer;
   box-shadow: var(--shadow);
   opacity:0;
-  transform: translateY(10px);
+  transform: translateY(var(--space-sm));
   transition: opacity .2s ease, transform .2s ease;
   z-index:9998;
 }
@@ -467,7 +467,7 @@ h1{
 input,
 textarea{
   width:100%;
-  padding:12px 12px;
+  padding:var(--space-sm);
   border-radius: 14px;
   border:1px solid var(--line);
   background: rgba(255,255,255,.04);
@@ -511,13 +511,13 @@ small.help{
 
 .contact-container h2 {
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: var(--space-lg);
   color: var(--text);
 }
 
 .contact-container label {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: var(--space-xs);
   font-weight: 600;
   color: var(--text);
 }
@@ -526,8 +526,8 @@ small.help{
 .contact-container select,
 .contact-container textarea {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 16px;
+  padding: var(--space-sm);
+  margin-bottom: var(--space-md);
   border: 1px solid var(--line);
   border-radius: 10px;
   background: rgba(255,255,255,.04);
@@ -573,17 +573,17 @@ small.help{
 /* Radio & Checkbox grupları */
 .radio-group,
 .checkbox-group {
-  margin-bottom: 16px;
+  margin-bottom: var(--space-md);
 }
 
 .radio-group label,
 .checkbox-group label {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--space-xs);
   font-weight: 400;
-  margin-right: 16px;
-  margin-bottom: 8px;
+  margin-right: var(--space-md);
+  margin-bottom: var(--space-xs);
   cursor: pointer;
 }
 
@@ -597,22 +597,22 @@ small.help{
 
 /* File input */
 .contact-container input[type="file"] {
-  padding: 10px;
+  padding: var(--space-sm);
   cursor: pointer;
 }
 
 /* Butonlar */
 .form-buttons {
   display: flex;
-  gap: 12px;
-  margin-top: 8px;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
 }
 
 .contact-container button[type="submit"] {
   background-color: var(--accent);
   color: #fff;
   border: none;
-  padding: 14px 32px;
+  padding: var(--space-md) var(--space-lg);
   border-radius: 12px;
   font-size: 1rem;
   font-weight: 700;
@@ -629,7 +629,7 @@ small.help{
   background: rgba(255,255,255,.06);
   color: var(--text);
   border: 1px solid var(--line);
-  padding: 14px 32px;
+  padding: var(--space-md) var(--space-lg);
   border-radius: 12px;
   font-size: 1rem;
   font-weight: 700;
@@ -646,7 +646,7 @@ small.help{
 
 .odev-nav{
   width:80%;
-  margin:20px auto 0;
+  margin:var(--space-lg) auto 0;
 }
 
 .odev-nav ul{
@@ -666,7 +666,7 @@ small.help{
   display:inline-block;
   color:#ffffff;
   text-decoration:none;
-  padding:12px 18px;
+  padding:var(--space-sm) var(--space-md);
   transition: background .25s ease;
   font-size:16px;
 }
@@ -678,8 +678,8 @@ small.help{
 .odev-header,
 .odev-footer{
   width:80%;
-  margin:20px auto;
-  padding:20px;
+  margin:var(--space-lg) auto;
+  padding:var(--space-lg);
   text-align:center;
   background: rgba(17,27,51,0.90);
   color:#e7ecff;
@@ -689,16 +689,16 @@ small.help{
 
 .odev-main{
   width:80%;
-  margin:20px auto;
+  margin:var(--space-lg) auto;
   display:flex;
-  gap:20px;
+  gap:var(--space-lg);
   align-items:flex-start;
   border:2px solid red;
 }
 
 .odev-content,
 .odev-sidebar{
-  padding:18px;
+  padding:var(--space-md);
   border-radius:12px;
   border:1px solid #273356;
   box-sizing:border-box;
@@ -745,7 +745,7 @@ small.help{
 
 @media (max-width: 980px){
   .projectCard{
-    flex:1 1 calc(50% - 16px);
+    flex:1 1 calc(50% - var(--space-md));
   }
 
   .odev-main{
