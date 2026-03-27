@@ -42,6 +42,13 @@ body{
   min-height:100vh;
 }
 
+/* ===== Flexbox Lab: Wrapper 100vh, flex column ===== */
+.wrapper{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
 a{
   color:inherit;
   text-decoration:none;
@@ -97,8 +104,9 @@ a{
 }
 
 header{
-  position:sticky;
-  top:0;
+  height:10vh;
+  display:flex;
+  align-items:center;
   z-index:50;
   background: rgba(10,16,30,.55);
   backdrop-filter: blur(10px);
@@ -111,10 +119,11 @@ header{
 }
 
 .nav{
+  width:min(1100px, 92%);
+  margin:0 auto;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:14px 0;
 }
 
 .brand{
@@ -186,15 +195,32 @@ header{
   padding:10px 12px;
 }
 
+/* ===== 2) Hero - flex row, space-between, stretch ===== */
 .hero{
-  padding:42px 0 20px;
+  padding:0;
 }
 
 .heroInner{
   padding:28px;
-  display:grid;
-  grid-template-columns: 1.35fr .65fr;
+  height:100%;
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:stretch;
   gap:18px;
+}
+
+.hero-text{
+  flex:1.35;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.hero-image{
+  flex:.65;
+  display:flex;
+  align-items:stretch;
 }
 
 h1{
@@ -256,12 +282,19 @@ h1{
   flex-wrap:wrap;
 }
 
+/* ===== 3) Kartlar - 30vh | flex, flex-wrap, gap ===== */
 .projects{
-  grid-template-columns: repeat(3, 1fr);
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
 }
 
 .projectCard{
+  flex:1 1 calc(33.333% - 16px);
+  min-width:250px;
   padding:16px;
+  display:flex;
+  flex-direction:column;
 }
 
 .projectCard h3{
@@ -278,11 +311,22 @@ h1{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
+  margin-bottom:auto;
 }
 
+/* ===== 4) Flex Grow - 20vh | flex-grow: 1-2-1, align-items: stretch ===== */
 .skillRow{
-  display:grid;
+  display:flex;
   gap:10px;
+  align-items:stretch;
+}
+
+.skill-grow-1{
+  flex-grow:1;
+}
+
+.skill-grow-2{
+  flex-grow:2;
 }
 
 .skill{
@@ -290,6 +334,8 @@ h1{
   border:1px solid var(--line);
   border-radius: var(--radius);
   background: rgba(255,255,255,.03);
+  display:flex;
+  flex-direction:column;
 }
 
 .skillTop{
@@ -316,10 +362,26 @@ h1{
   transition: width .9s ease;
 }
 
+.skill .btn{
+  margin-top:auto;
+}
+
+/* Bölüm yükseklikleri (auto) */
+.section-kartlar{
+  padding:10px 0;
+}
+
+.section-grow{
+  padding:8px 0;
+}
+
+/* ===== 5) Footer | justify-content: center, align-items: center ===== */
 .footer{
-  padding:26px 0 40px;
+  padding:20px 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   color:var(--muted);
-  text-align:center;
 }
 
 .reveal{
@@ -665,8 +727,8 @@ small.help{
 /* responsive */
 
 @media (max-width: 980px){
-  .projects{
-    grid-template-columns: repeat(2, 1fr);
+  .projectCard{
+    flex:1 1 calc(50% - 16px);
   }
 
   .odev-main{
@@ -676,7 +738,7 @@ small.help{
 
 @media (max-width: 880px){
   .heroInner{
-    grid-template-columns:1fr;
+    flex-direction:column;
   }
 
   .navlinks{
@@ -686,7 +748,11 @@ small.help{
 }
 
 @media (max-width: 640px){
-  .projects{
-    grid-template-columns: 1fr;
+  .projectCard{
+    flex:1 1 100%;
+  }
+
+  .skillRow{
+    flex-direction:column;
   }
 }

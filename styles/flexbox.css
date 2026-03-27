@@ -1,0 +1,235 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #f0f2f7;
+  color: #1a1a2e;
+}
+
+/* ===== Wrapper: 100vh, flex column ===== */
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== 1) Navbar - 10vh ===== */
+.navbar {
+  height: 10vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  background: #ffffff;
+  border-bottom: 1px solid #dde1ea;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #1a1a2e;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #5a6077;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #1a1a2e;
+}
+
+/* ===== 2) Hero - 30vh ===== */
+.hero {
+  height: 30vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 24px 40px;
+  background: #ffffff;
+  border-bottom: 1px solid #dde1ea;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.hero-text h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.hero-text p {
+  color: #5a6077;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 24px;
+  background: #e8ecf4;
+  border-radius: 12px;
+}
+
+.placeholder-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== 3) Kartlar - 30vh ===== */
+.kartlar {
+  height: 30vh;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px 40px;
+  background: #f5f7fb;
+  align-content: flex-start;
+}
+
+.kart {
+  flex: 1 1 calc(25% - 16px);
+  min-width: 180px;
+  background: #ffffff;
+  border: 1px solid #dde1ea;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.kart h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.kart p {
+  color: #5a6077;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.kart hr {
+  border: none;
+  border-top: 1px solid #dde1ea;
+  margin-bottom: 10px;
+}
+
+/* ===== 4) Flex Grow - 20vh ===== */
+.flex-grow-section {
+  height: 20vh;
+  display: flex;
+  gap: 16px;
+  padding: 16px 40px;
+  align-items: stretch;
+  background: #ffffff;
+  border-top: 1px solid #dde1ea;
+}
+
+.grow-box {
+  background: #f5f7fb;
+  border: 1px solid #dde1ea;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.grow-box h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.grow-box p {
+  color: #5a6077;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.grow-1 {
+  flex-grow: 1;
+}
+
+.grow-2 {
+  flex-grow: 2;
+}
+
+.grow-3 {
+  flex-grow: 1;
+}
+
+/* ===== 5) Footer - 10vh ===== */
+.footer {
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border-top: 1px solid #dde1ea;
+  color: #5a6077;
+  font-size: 0.95rem;
+}
+
+/* ===== Butonlar ===== */
+.buton {
+  display: inline-block;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.buton:hover {
+  filter: brightness(1.1);
+}
+
+.buton-primary {
+  background: #6c63ff;
+  color: #fff;
+}
+
+.buton-green {
+  background: #4ade80;
+  color: #1a3a2a;
+}
+
+.buton-yellow {
+  background: #facc15;
+  color: #3a3000;
+}
+
+.buton-coral {
+  background: #f87171;
+  color: #fff;
+}
