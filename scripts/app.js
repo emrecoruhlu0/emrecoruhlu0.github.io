@@ -142,6 +142,26 @@ function initContactPreference() {
   });
 }
 
+// Hamburger nav toggle
+function initNavToggle(){
+  const btn = document.getElementById("navToggle");
+  const links = document.querySelector(".navlinks");
+  if(!btn || !links) return;
+  btn.addEventListener("click", ()=>{
+    const open = links.classList.toggle("open");
+    btn.textContent = open ? "✕" : "☰";
+    btn.setAttribute("aria-expanded", open);
+  });
+  // Bir linke tıklanınca menüyü kapat
+  links.querySelectorAll("a").forEach(a=>{
+    a.addEventListener("click", ()=>{
+      links.classList.remove("open");
+      btn.textContent = "☰";
+      btn.setAttribute("aria-expanded", false);
+    });
+  });
+}
+
 window.addEventListener("load", ()=>{
   // hero typing
   const t = document.getElementById("typing");
@@ -155,6 +175,7 @@ window.addEventListener("load", ()=>{
   initMailComposer();
   initContactPreference();
   setActiveNav();
+  initNavToggle();
 
   const btn = document.getElementById("themeBtn");
   if(btn) btn.addEventListener("click", toggleTheme);

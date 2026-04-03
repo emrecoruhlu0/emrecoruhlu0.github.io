@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Position Lab | Emre Çoruhlu</title>
+  <style>
+    /* ── Tema değişkenleri (ana siteyle uyumlu) ── */
+    :root {
+      --bg:      #0b1220;
+      --bg2:     #0f1a2f;
+      --card:    #111b33;
+      --text:    #e7ecff;
+      --muted:   #a8b3d6;
+      --accent:  #7c5cff;
+      --accent2: #23d5ab;
+      --line:    #273356;
+      --radius:  18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 200vh; /* scroll test için */
+      padding-bottom: 80px;
+    }
+
+    /* ─────────────────────────────────────────
+       FIXED öğe — sağ altta sabit "↑ Yukarı"
+    ───────────────────────────────────────── */
+    .fixed-top-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(124,92,255,0.45);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer; /* hover cursor #1 */
+    }
+    .fixed-top-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(124,92,255,0.65);
+    }
+    .fixed-top-btn:active {
+      transform: scale(0.95); /* :active efekti */
+    }
+
+    /* ─────────────────────────────────────────
+       Başlık alanı
+    ───────────────────────────────────────── */
+    .page-header {
+      text-align: center;
+      padding: 56px 20px 32px;
+    }
+    .page-header .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent2);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+      cursor: pointer; /* hover cursor #2 */
+    }
+    .page-header .back-link:hover { color: #fff; }
+
+    .page-header h1 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .page-header p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ─────────────────────────────────────────
+       Kart alanı merkezi sarıcı
+    ───────────────────────────────────────── */
+    .card-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 20px;
+    }
+
+    /* ─────────────────────────────────────────
+       ANA KART — position: relative (zorunlu)
+    ───────────────────────────────────────── */
+    .announcement-card {
+      position: relative;          /* absolute öğelerin referansı */
+      width: 100%;
+      max-width: 680px;
+      min-height: 420px;
+      background: linear-gradient(135deg, #1a2547 0%, #0f1a2f 60%, #1a1040 100%);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 48px 44px 44px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+      overflow: hidden;
+      animation: cardGlow 3s ease-in-out infinite; /* @keyframes animasyon */
+      cursor: default;
+    }
+
+    /* @keyframes #1 — kart border rengi nabız gibi */
+    @keyframes cardGlow {
+      0%, 100% {
+        border-color: var(--line);
+        box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+      }
+      50% {
+        border-color: var(--accent);
+        box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 32px rgba(124,92,255,0.35);
+      }
+    }
+
+    /* @keyframes #2 — "Ücretsiz" rozeti yukarı-aşağı yüzer */
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-6px); }
+    }
+
+    /* ── Arka plan dekor dairesi (z-index ile altta) ── */
+    .card-bg-circle {
+      position: absolute;   /* absolute #1 */
+      bottom: -60px;
+      right: -60px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,92,255,0.18) 0%, transparent 70%);
+      z-index: 0;           /* en altta */
+      pointer-events: none;
+    }
+
+    /* ── Kart içeriği (z-index ile üstte) ── */
+    .card-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-content h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+      background: linear-gradient(90deg, #fff 60%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card-content p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 440px;
+      margin-bottom: 28px;
+    }
+
+    /* Detay listesi */
+    .card-details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card-details li {
+      list-style: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-details li span.icon { font-size: 1rem; }
+
+    /* ─────────────────────────────────────────
+       ABSOLUTE ROZET 1 — sol üst "ÜCRETSİZ"
+    ───────────────────────────────────────── */
+    .badge-free {
+      position: absolute;   /* absolute #2 */
+      top: 20px;
+      left: 20px;
+      z-index: 3;           /* üstte */
+      background: var(--accent2);
+      color: #0b1220;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 50px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: box-shadow 0.2s;
+      cursor: pointer;      /* hover cursor #3 */
+      animation: floatBadge 2.4s ease-in-out infinite; /* @keyframes #2 */
+    }
+    .badge-free:hover {
+      box-shadow: 0 4px 16px rgba(35,213,171,0.4);
+    }
+
+    /* ─────────────────────────────────────────
+       ABSOLUTE ROZET 2 — sağ üst tarih
+    ───────────────────────────────────────── */
+    .badge-date {
+      position: absolute;   /* absolute #3 */
+      top: 20px;
+      right: 20px;
+      z-index: 3;
+      background: var(--card);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 10px;
+      transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;      /* hover cursor #4 */
+    }
+    .badge-date:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(124,92,255,0.4);
+    }
+
+    /* ─────────────────────────────────────────
+       ABSOLUTE ROZET 3 — sağ alt "Son Kayıt"
+    ───────────────────────────────────────── */
+    .badge-deadline {
+      position: absolute;   /* absolute #4 */
+      bottom: 20px;
+      right: 20px;
+      z-index: 3;
+      background: rgba(255,80,80,0.15);
+      border: 1px solid rgba(255,80,80,0.4);
+      color: #ff8080;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 10px;
+      transition: background 0.25s;
+      cursor: pointer;      /* hover cursor #5 */
+    }
+    .badge-deadline:hover {
+      background: rgba(255,80,80,0.3);
+    }
+
+    /* ─────────────────────────────────────────
+       ABSOLUTE öğe 4 — konum etiketi (orta-alt)
+    ───────────────────────────────────────── */
+    .badge-location {
+      position: absolute;   /* absolute #5 — fazladan */
+      bottom: 20px;
+      left: 20px;
+      z-index: 3;
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.8rem;
+      padding: 6px 14px;
+      border-radius: 10px;
+      transition: border-color 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+    .badge-location:hover {
+      border-color: var(--accent2);
+      color: var(--accent2);
+    }
+
+    /* ─────────────────────────────────────────
+       Footer
+    ───────────────────────────────────────── */
+    footer {
+      text-align: center;
+      margin-top: 56px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      opacity: 0.6;
+    }
+
+    /* ─────────────────────────────────────────
+       MOBİL — 520px ve altı
+    ───────────────────────────────────────── */
+    @media (max-width: 520px) {
+      .page-header {
+        padding: 36px 16px 24px;
+      }
+
+      .card-wrapper {
+        padding: 0 12px;
+      }
+
+      .announcement-card {
+        padding: 56px 20px 56px; /* rozetler için üst/alt boşluk korunuyor */
+        min-height: unset;
+        border-radius: 18px;
+      }
+
+      .card-content h2 {
+        font-size: 1.4rem;
+      }
+
+      .card-content p {
+        font-size: 0.9rem;
+        max-width: 100%;
+      }
+
+      /* Üst rozetler — font küçüt, padding azalt */
+      .badge-free,
+      .badge-date {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+      }
+
+      /* Alt rozetler — metin taşmasın diye max-width sınırla */
+      .badge-deadline,
+      .badge-location {
+        font-size: 0.72rem;
+        padding: 5px 10px;
+        max-width: 46%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .fixed-top-btn {
+        bottom: 16px;
+        right: 16px;
+        padding: 10px 16px;
+        font-size: 0.82rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FIXED öğe: sağ altta sabit "↑ Yukarı" butonu -->
+  <a class="fixed-top-btn" href="#top">↑ Yukarı</a>
+
+  <!-- Başlık alanı -->
+  <div id="top" class="page-header">
+    <a class="back-link" href="index.html">← Ana Sayfaya Dön</a>
+    <h1>CSS Position — Lab Çalışması</h1>
+    <p>Hafta 5 &nbsp;|&nbsp; position: relative · absolute · fixed · z-index</p>
+  </div>
+
+  <!-- Kart alanı -->
+  <div class="card-wrapper">
+
+    <!-- ANA KART: position: relative -->
+    <div class="announcement-card">
+
+      <!-- Arka plan dekor: position: absolute #1, z-index: 0 -->
+      <div class="card-bg-circle"></div>
+
+      <!-- Rozet 1: position: absolute #2, z-index: 3 -->
+      <div class="badge-free">Ücretsiz</div>
+
+      <!-- Rozet 2: position: absolute #3, z-index: 3 -->
+      <div class="badge-date">📅 18 Nisan 2026</div>
+
+      <!-- Rozet 3: position: absolute #4, z-index: 3 -->
+      <div class="badge-deadline">⏰ Son Kayıt: 15 Nisan</div>
+
+      <!-- Rozet 4: position: absolute #5, z-index: 3 -->
+      <div class="badge-location">📍 Mühendislik Fakültesi A-101</div>
+
+      <!-- Kart ana içerik: z-index: 2 (dairenin üstünde) -->
+      <div class="card-content">
+        <h2>Bilgisayar Topluluğu<br/>Hackathon 2026</h2>
+        <p>
+          24 saatlik kesintisiz kodlama maratonu! Yapay zeka, web ve gömülü sistemler
+          kategorilerinde yarış. Takımlar oluştur, fikirlerini hayata geçir,
+          ödülleri kap.
+        </p>
+        <ul class="card-details">
+          <li><span class="icon">👥</span> Takım başına 2–4 kişi</li>
+          <li><span class="icon">🏆</span> Toplam ödül havuzu: 15.000 ₺</li>
+          <li><span class="icon">🍕</span> Yemek ve içecek karşılıklı</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>2026 &mdash; Emre Çoruhlu &nbsp;|&nbsp; LAB: CSS Position Çalışması</p>
+  </footer>
+
+</body>
+</html>
