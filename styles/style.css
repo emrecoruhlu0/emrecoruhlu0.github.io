@@ -131,7 +131,7 @@ header{
 }
 
 .nav{
-  width:min(1100px, 92%);
+  width:min(1400px, 96%);
   margin:0 auto;
   display:flex;
   align-items:center;
@@ -156,16 +156,18 @@ header{
 
 .navlinks{
   display:flex;
-  gap: var(--space-sm);
+  gap: 4px;
   align-items:center;
+  flex-wrap: nowrap;
 }
 
 .navlinks a{
-  padding: var(--space-xs) var(--space-sm);
-  padding:10px 12px;
+  padding: 7px 10px;
   border-radius:12px;
   color:var(--muted);
   border:1px solid transparent;
+  font-size: 0.82rem;
+  white-space: nowrap;
 }
 
 .navlinks a.active,
