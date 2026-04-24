@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Flexbox Lab Uygulaması</title>
+  <link rel="stylesheet" href="styles/style.css" />
   <link rel="stylesheet" href="styles/flexbox.css" />
 </head>
 <body>
@@ -11,15 +12,25 @@
 <div class="wrapper">
 
   <!-- 1) Navbar -->
-  <nav class="navbar">
-    <div class="logo">LOGO</div>
-    <div class="nav-links">
-      <a href="#">Ana Sayfa</a>
-      <a href="#">Hakkinda</a>
-      <a href="#">Dersler</a>
-      <a href="#">Iletisim</a>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="dot"></span>
+        <span>Emre Çoruhlu</span>
+      </a>
+      <button class="btn icon" id="navToggle" type="button" aria-expanded="false" title="Menü">☰</button>
+      <div class="navlinks">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="about.html">Hakkımda</a>
+        <a href="interests.html">İlgi Alanları</a>
+        <a href="contact.html">İletişim</a>
+        <a href="css-odev.html">CSS Ödev</a>
+        <a href="flexbox-odev.html" class="active">Flexbox Ödev</a>
+        <a href="hesaplamalar.html">Hesaplamalar</a>
+        <button class="btn icon" id="themeBtn" type="button" title="Tema değiştir">🌓</button>
+      </div>
     </div>
-  </nav>
+  </header>
 
   <!-- 2) Hero -->
   <section class="hero">
@@ -104,5 +115,6 @@
 
 </div>
 
+<script src="scripts/app.js"></script>
 </body>
 </html>

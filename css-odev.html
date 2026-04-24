@@ -8,14 +8,25 @@
 </head>
 <body>
 
-    <nav class="odev-nav">
-        <ul>
-            <li><a href="index.html">Ana Sayfa</a></li>
-            <li><a href="about.html">Hakkımda</a></li>
-            <li><a href="interests.html">İlgi Alanlarım</a></li>
-            <li><a href="contact.html">İletişim</a></li>
-        </ul>
-    </nav>
+    <header>
+      <div class="container nav">
+        <a class="brand" href="index.html">
+          <span class="dot"></span>
+          <span>Emre Çoruhlu</span>
+        </a>
+        <button class="btn icon" id="navToggle" type="button" aria-expanded="false" title="Menü">☰</button>
+      <div class="navlinks">
+          <a href="index.html">Ana Sayfa</a>
+          <a href="about.html">Hakkımda</a>
+          <a href="interests.html">İlgi Alanları</a>
+          <a href="contact.html">İletişim</a>
+          <a href="css-odev.html" class="active">CSS Ödev</a>
+          <a href="flexbox-odev.html">Flexbox Ödev</a>
+          <a href="hesaplamalar.html">Hesaplamalar</a>
+          <button class="btn icon" id="themeBtn" type="button" title="Tema değiştir">🌓</button>
+        </div>
+      </div>
+    </header>
 
     <header class="odev-header">
         <h1>Emre Çoruhlu - Kişisel Web Sayfası</h1>
@@ -56,5 +67,6 @@
         <p>© 2026 Emre Çoruhlu - Web Programlama</p>
     </footer>
 
+<script src="scripts/app.js"></script>
 </body>
 </html>

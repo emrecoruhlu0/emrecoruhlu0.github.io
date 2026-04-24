@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hesaplamalar | Emre</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <style>
+    :root {
+      --surface:  #161922;
+      --surface2: #1e2230;
+      --border:   #2a2f3d;
+      --success:  #4ade80;
+      --fail:     #f87171;
+      --mono:     'Space Mono', monospace;
+      --sans:     'DM Sans', sans-serif;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    .page-header { margin-bottom: 3rem; }
+
+    .page-header h1 {
+      font-family: var(--mono);
+      font-size: 2rem;
+      color: var(--text);
+      letter-spacing: -1px;
+    }
+
+    .page-header h1 span { color: var(--accent); }
+
+    .page-header p {
+      color: var(--muted);
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+      width: fit-content;
+    }
+
+    .tab-btn {
+      background: var(--surface);
+      border: none;
+      color: var(--muted);
+      padding: 0.7rem 1.8rem;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:not(:last-child) { border-right: 1px solid var(--border); }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .tab-btn:hover:not(.active) {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    .panel { display: none; }
+    .panel.active { display: block; animation: fadeIn 0.3s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      max-width: 520px;
+    }
+
+    .card h2 {
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    .field { margin-bottom: 1.1rem; }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 0.4rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      padding: 0.65rem 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    input:focus, select:focus { border-color: var(--accent); }
+
+    select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237a8099' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.9rem center;
+      padding-right: 2.5rem;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn:hover { background: #4a7de0; }
+    .btn:active { transform: scale(0.98); }
+
+    .result-box {
+      margin-top: 1.5rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      display: none;
+    }
+
+    .result-box.show { display: block; animation: fadeIn 0.3s ease; }
+
+    .result-name {
+      font-family: var(--mono);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-row:last-child { border-bottom: none; }
+
+    .result-label { color: var(--muted); }
+    .result-value { font-weight: 600; color: var(--text); font-family: var(--mono); }
+
+    .durum-gecti { color: var(--success); }
+    .durum-kaldi { color: var(--fail); }
+
+    .unit-result {
+      margin-top: 1.5rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      text-align: center;
+      display: none;
+    }
+
+    .unit-result.show { display: block; animation: fadeIn 0.3s ease; }
+
+    .unit-result-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+
+    .unit-result-value {
+      font-family: var(--mono);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .unit-result-unit {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .harf-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.15rem 0.6rem;
+      border-radius: 5px;
+    }
+
+    .error-msg {
+      color: var(--fail);
+      font-size: 0.83rem;
+      margin-top: 0.4rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html"><span class="dot"></span><span>Emre Çoruhlu</span></a>
+    <button class="btn icon" id="navToggle" type="button" aria-expanded="false" title="Menü">☰</button>
+    <div class="navlinks">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="about.html">Hakkımda</a>
+      <a href="interests.html">İlgi Alanları</a>
+      <a href="contact.html">İletişim</a>
+      <a href="css-odev.html">CSS Ödev</a>
+      <a href="flexbox-odev.html">Flexbox Ödev</a>
+      <a href="hesaplamalar.html" class="active">Hesaplamalar</a>
+      <button class="btn icon" id="themeBtn" type="button" title="Tema değiştir">🌓</button>
+    </div>
+  </div>
+</header>
+
+  <div class="page">
+    <div class="page-header">
+      <h1>// <span>hesaplamalar</span></h1>
+      <p>Web Programlama dersi uygulama ödevleri</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('not')">Uygulama 1 – Not Hesaplama</button>
+      <button class="tab-btn" onclick="switchTab('birim')">Uygulama 2 – Birim Dönüştürücü</button>
+    </div>
+
+    <!-- PANEL 1: NOT HESAPLAMA -->
+    <div class="panel active" id="panel-not">
+      <div class="card">
+        <h2>// öğrenci not hesaplama</h2>
+
+        <div class="field">
+          <label>Ad Soyad</label>
+          <input type="text" id="adSoyad" placeholder="Örn: Emre Coruhlu" />
+          <span class="error-msg" id="err-ad">Ad Soyad boş bırakılamaz.</span>
+        </div>
+
+        <div class="field">
+          <label>Vize Notu (0–100)</label>
+          <input type="number" id="vize" placeholder="0 – 100" min="0" max="100" />
+          <span class="error-msg" id="err-vize">Geçerli bir vize notu girin (0–100).</span>
+        </div>
+
+        <div class="field">
+          <label>Final Notu (0–100)</label>
+          <input type="number" id="final" placeholder="0 – 100" min="0" max="100" />
+          <span class="error-msg" id="err-final">Geçerli bir final notu girin (0–100).</span>
+        </div>
+
+        <button class="btn" onclick="hesaplaNot()">Hesapla</button>
+
+        <div class="result-box" id="not-result">
+          <div class="result-name" id="res-isim"></div>
+          <div class="result-row">
+            <span class="result-label">Ortalama</span>
+            <span class="result-value" id="res-ort"></span>
+          </div>
+          <div class="result-row">
+            <span class="result-label">Harf Notu</span>
+            <span class="result-value"><span class="harf-badge" id="res-harf"></span></span>
+          </div>
+          <div class="result-row">
+            <span class="result-label">Durum</span>
+            <span class="result-value" id="res-durum"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 2: BİRİM DÖNÜŞTÜRÜCÜ -->
+    <div class="panel" id="panel-birim">
+      <div class="card">
+        <h2>// birim dönüştürücü</h2>
+
+        <div class="field">
+          <label>Değer Giriniz</label>
+          <input type="number" id="birimDeger" placeholder="Örn: 50" />
+          <span class="error-msg" id="err-birim">Geçerli bir sayı girin.</span>
+        </div>
+
+        <div class="field">
+          <label>Dönüşüm Tipi</label>
+          <select id="donusumTipi">
+            <optgroup label="Sıcaklık">
+              <option value="c_f">Celsius → Fahrenheit</option>
+              <option value="f_c">Fahrenheit → Celsius</option>
+              <option value="c_k">Celsius → Kelvin</option>
+              <option value="k_c">Kelvin → Celsius</option>
+            </optgroup>
+            <optgroup label="Uzunluk">
+              <option value="m_km">Metre → Kilometre</option>
+              <option value="km_m">Kilometre → Metre</option>
+              <option value="m_mil">Metre → Mil</option>
+              <option value="mil_m">Mil → Metre</option>
+            </optgroup>
+            <optgroup label="Kütle">
+              <option value="kg_g">Kilogram → Gram</option>
+              <option value="g_kg">Gram → Kilogram</option>
+              <option value="kg_lb">Kilogram → Pound</option>
+              <option value="lb_kg">Pound → Kilogram</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <button class="btn" onclick="donustur()">Hesapla</button>
+
+        <div class="unit-result" id="birim-result">
+          <div class="unit-result-label">Sonuç</div>
+          <div class="unit-result-value" id="res-birim"></div>
+          <div class="unit-result-unit" id="res-birim-birim"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tab) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('panel-' + tab).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    function harfNotu(ort) {
+      if (ort >= 90) return 'AA';
+      if (ort >= 85) return 'BA';
+      if (ort >= 80) return 'BB';
+      if (ort >= 75) return 'CB';
+      if (ort >= 70) return 'CC';
+      if (ort >= 65) return 'DC';
+      if (ort >= 60) return 'DD';
+      if (ort >= 55) return 'FD';
+      return 'FF';
+    }
+
+    function hesaplaNot() {
+      ['err-ad','err-vize','err-final'].forEach(id => document.getElementById(id).style.display = 'none');
+
+      const ad    = document.getElementById('adSoyad').value.trim();
+      const vize  = parseFloat(document.getElementById('vize').value);
+      const final = parseFloat(document.getElementById('final').value);
+
+      let hata = false;
+
+      if (!ad) {
+        document.getElementById('err-ad').style.display = 'block';
+        hata = true;
+      }
+      if (isNaN(vize) || vize < 0 || vize > 100) {
+        document.getElementById('err-vize').style.display = 'block';
+        hata = true;
+      }
+      if (isNaN(final) || final < 0 || final > 100) {
+        document.getElementById('err-final').style.display = 'block';
+        hata = true;
+      }
+      if (hata) return;
+
+      const ort   = vize * 0.4 + final * 0.6;
+      const harf  = harfNotu(ort);
+      const gecti = ort >= 50;
+
+      document.getElementById('res-isim').textContent = ad;
+      document.getElementById('res-ort').textContent  = ort.toFixed(2);
+      document.getElementById('res-harf').textContent = harf;
+
+      const durumEl = document.getElementById('res-durum');
+      durumEl.textContent = gecti ? 'Geçti ✓' : 'Kaldı ✗';
+      durumEl.className   = 'result-value ' + (gecti ? 'durum-gecti' : 'durum-kaldi');
+
+      document.getElementById('not-result').classList.add('show');
+    }
+
+    const donusumler = {
+      c_f:   v => ({ sonuc: v * 9/5 + 32,   birim: '°F' }),
+      f_c:   v => ({ sonuc: (v - 32) * 5/9,  birim: '°C' }),
+      c_k:   v => ({ sonuc: v + 273.15,      birim: 'K'  }),
+      k_c:   v => ({ sonuc: v - 273.15,      birim: '°C' }),
+      m_km:  v => ({ sonuc: v / 1000,        birim: 'km' }),
+      km_m:  v => ({ sonuc: v * 1000,        birim: 'm'  }),
+      m_mil: v => ({ sonuc: v / 1609.344,    birim: 'mil'}),
+      mil_m: v => ({ sonuc: v * 1609.344,    birim: 'm'  }),
+      kg_g:  v => ({ sonuc: v * 1000,        birim: 'g'  }),
+      g_kg:  v => ({ sonuc: v / 1000,        birim: 'kg' }),
+      kg_lb: v => ({ sonuc: v * 2.20462,     birim: 'lb' }),
+      lb_kg: v => ({ sonuc: v / 2.20462,     birim: 'kg' }),
+    };
+
+    function donustur() {
+      document.getElementById('err-birim').style.display = 'none';
+
+      const deger = parseFloat(document.getElementById('birimDeger').value);
+      const tip   = document.getElementById('donusumTipi').value;
+
+      if (isNaN(deger)) {
+        document.getElementById('err-birim').style.display = 'block';
+        return;
+      }
+
+      const { sonuc, birim } = donusumler[tip](deger);
+
+      const formatted = Math.abs(sonuc) >= 0.001
+        ? sonuc.toLocaleString('tr-TR', { maximumFractionDigits: 4 })
+        : sonuc.toExponential(3);
+
+      document.getElementById('res-birim').textContent       = formatted;
+      document.getElementById('res-birim-birim').textContent = birim;
+      document.getElementById('birim-result').classList.add('show');
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key !== 'Enter') return;
+      if (document.getElementById('panel-not').classList.contains('active'))   hesaplaNot();
+      if (document.getElementById('panel-birim').classList.contains('active')) donustur();
+    });
+  </script>
+  <script src="scripts/app.js"></script>
+</div><!-- /.wrapper -->
+</body>
+</html>
