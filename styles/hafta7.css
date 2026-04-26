@@ -1,0 +1,67 @@
+/* Renkli bilgi kartları */
+.neden-mavi  { background-color: #e8f4fd; }
+.neden-yesil { background-color: #e8f8f1; }
+.neden-sari  { background-color: #fef9e7; }
+.neden-mor   { background-color: #f4ecf7; }
+
+/* Koyu tema */
+body.dark-theme {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-theme .navbar.bg-dark {
+  background-color: #0a0a0a !important;
+}
+
+body.dark-theme .bg-light {
+  background-color: #1e1e1e !important;
+}
+
+body.dark-theme .card {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border-color: #333;
+}
+
+body.dark-theme .text-secondary {
+  color: #aaa !important;
+}
+
+body.dark-theme .form-control,
+body.dark-theme .form-select {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+body.dark-theme .form-control::placeholder {
+  color: #777;
+}
+
+body.dark-theme .form-control:focus,
+body.dark-theme .form-select:focus {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+body.dark-theme .alert-info {
+  background-color: #1a2a3a;
+  color: #90caf9;
+  border-color: #1565c0;
+}
+
+body.dark-theme .border-bottom {
+  border-color: #333 !important;
+}
+
+body.dark-theme .neden-mavi  { background-color: #1a2a3a; }
+body.dark-theme .neden-yesil { background-color: #1a2e25; }
+body.dark-theme .neden-sari  { background-color: #2a2510; }
+body.dark-theme .neden-mor   { background-color: #261a2e; }
+
+body.dark-theme footer.bg-dark {
+  background-color: #0a0a0a !important;
+}
